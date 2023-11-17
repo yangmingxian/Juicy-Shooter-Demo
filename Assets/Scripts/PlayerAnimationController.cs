@@ -10,6 +10,10 @@ public class PlayerAnimationController : MonoBehaviour
     AnimancerComponent _Animancer;
     [SerializeField] AnimationClip idleClip;
     [SerializeField] AnimationClip moveClip;
+    [SerializeField] AnimationClip dashClip;
+    [SerializeField] AnimationClip deathClip;
+
+
 
     private void Awake()
     {
@@ -17,6 +21,8 @@ public class PlayerAnimationController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (PlayerStatus.isDead)
+            return;
         FaceToMouse();
     }
 
@@ -40,6 +46,22 @@ public class PlayerAnimationController : MonoBehaviour
         _Animancer.Play(clip);
         var state = _Animancer.Play(clip);
         _Animancer.Play(clip).Time = 0;
+    }
+
+    [Button]
+    public void PlayDashLoop()
+    {
+        _Animancer.Play(dashClip);
+        var state = _Animancer.Play(dashClip);
+        _Animancer.Play(dashClip).Time = 0;
+    }
+
+    [Button]
+    public void PlayDeath()
+    {
+        _Animancer.Play(deathClip);
+        var state = _Animancer.Play(deathClip);
+        _Animancer.Play(deathClip).Time = 0;
     }
 
     void FaceToMouse()

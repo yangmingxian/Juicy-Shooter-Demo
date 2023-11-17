@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         UpdateFramerate();
-        InvokeRepeating(nameof(StartSpawn), 0,SpawnCoolDown);
+        InvokeRepeating(nameof(StartSpawn), 0, SpawnCoolDown);
 
     }
 
@@ -95,6 +95,7 @@ public class GameController : MonoBehaviour
     #endregion
 
     #region Game Routine
+    [SerializeField] MMF_Player gameOverFeedback;
     public void GameOver()
     {
 
@@ -103,5 +104,13 @@ public class GameController : MonoBehaviour
     #endregion
 
 
+    private void OnEnable()
+    {
+        PlayerStatus.PlayerDie += GameOver;
+    }
+    private void OnDisable()
+    {
+        PlayerStatus.PlayerDie -= GameOver;
 
+    }
 }

@@ -11,6 +11,7 @@ public class MeleeWeapon : MonoBehaviour
 
     Collider2D col;
     public float damage;
+    public float hitForce;
     public LayerMask layerMask;
     public Transform playerTrans;
     public float rotationSpeed = 10f; // 旋转速度
@@ -31,15 +32,22 @@ public class MeleeWeapon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Aiming();
+        AimingPlayer();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (LayerContains(layerMask, other.gameObject.layer))
         {
+
             if (other.transform.TryGetComponent<PlayerStatus>(out var player))
             {
+
+                Vector2 difference = (other.transform.position - transform.position).normalized;
+                Vector2 force = difference * hitForce;
+                other.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+
+
                 player.ReveiveDamage(damage);
                 ChangeTrigger(false);
             }
@@ -52,7 +60,7 @@ public class MeleeWeapon : MonoBehaviour
     }
 
 
-    void Aiming()
+    void AimingPlayer()
     {
         // 计算朝向
         Vector2 direction = playerTrans.transform.position - weaponParent.position;
@@ -70,8 +78,6 @@ public class MeleeWeapon : MonoBehaviour
 
         weaponParent.localScale = scale;
 
-
-
         // 处理武器和角色的遮挡关系
         if (weaponParent.eulerAngles.z > 0 && weaponParent.eulerAngles.z < 180)
         {
@@ -82,6 +88,10 @@ public class MeleeWeapon : MonoBehaviour
             weaponRenderer.sortingOrder = ownerRenderer.sortingOrder + 1;
         }
     }
+
+    // TODO: Aim nothing and move around
+
+
     bool LayerContains(LayerMask mask, int layer)
     {
         return (mask.value & (1 << layer)) > 0;

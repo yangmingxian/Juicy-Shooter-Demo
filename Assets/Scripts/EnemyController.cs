@@ -5,6 +5,7 @@ using Animancer;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using Lean.Pool;
 
 
 public class EnemyController : MonoBehaviour
@@ -29,6 +30,9 @@ public class EnemyController : MonoBehaviour
     MeleeWeapon meleeWeapon;
     public LayerMask layerMask;
 
+    public float deathExplodeProb = 0.25f;
+
+
     public float attackRange = 1f;
     public float attackCooldown = 1f;
     public float attackDamage = 10f;
@@ -51,6 +55,8 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!active || status.isDead)
+            return;
+        if (PlayerStatus.isDead)
             return;
 
         if (IsPlayerInAttactRange())
@@ -92,6 +98,9 @@ public class EnemyController : MonoBehaviour
         direction = GameObject.FindWithTag("Player").transform.position - transform.position;
         rb.velocity += speed * Time.fixedDeltaTime * direction.normalized;
         rb.velocity *= Mathf.Pow(1 - moveDamping, Time.fixedDeltaTime * 10);
+
+        enemySprite.flipX = direction.x < 0;
+
     }
 
     public void Attack()
@@ -110,7 +119,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public MMF_Player deathFeedbackPlayer;
-    public Explosion explodsion;
+    public Explosion explodsionPrefab;
 
     public void Death()
     {
@@ -119,14 +128,29 @@ public class EnemyController : MonoBehaviour
         _animancer.Play(deathClip).Time = 0;
         state.Events.OnEnd = () => state.IsPlaying = false;
 
-        explodsion.ownerTrans = transform;
-        explodsion.Explode();
+        DeathExplode(deathExplodeProb);
 
         deathFeedbackPlayer.PlayFeedbacks();
         transform.GetComponentInChildren<CircleCollider2D>().isTrigger = true;
         transform.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
-        rb.mass=20;
+        rb.mass = 20;
         GameController.enemyList.Remove(this);
 
     }
+
+    void DeathExplode(float prob)
+    {
+        float randomValue = Random.value;
+        if (randomValue < prob)
+        {
+            var explodsion = LeanPool.Spawn(explodsionPrefab, transform.position, Quaternion.identity);
+            explodsion.ownerTrans = transform;
+            explodsion.Explode();
+            explodsion.GetComponent<MMF_Player>().PlayFeedbacks();
+        }
+
+
+    }
+
+
 }

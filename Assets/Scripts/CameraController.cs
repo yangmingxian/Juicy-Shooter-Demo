@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
 {
 
     public CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera CharacterDeathCam;
+
 
     public Transform aimTrans;
     public float aimDuration;
@@ -23,6 +25,19 @@ public class CameraController : MonoBehaviour
         {
             aimTrans.localPosition = Vector3.zero;
         }
+    }
+
+    [Button]
+    public void ChangeCharacterDeathCam()
+    {
+        virtualCamera.Priority = 0;
+        CharacterDeathCam.Priority = 1;
+    }
+    [Button]
+    public void ChangeNormalCam()
+    {
+        virtualCamera.Priority = 1;
+        CharacterDeathCam.Priority = 0;
     }
 
 }

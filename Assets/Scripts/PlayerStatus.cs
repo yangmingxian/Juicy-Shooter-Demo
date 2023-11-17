@@ -6,6 +6,8 @@ using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 public class PlayerStatus : Status
 {
+
+    public static bool isDead;
     [SerializeField] MMProgressBar healthBar;
     public delegate void PlayerEvent();
 
@@ -26,6 +28,7 @@ public class PlayerStatus : Status
         if (health <= 0)
         {
             health = 0;
+            isDead = true;
             PlayerDie?.Invoke();
         }
     }

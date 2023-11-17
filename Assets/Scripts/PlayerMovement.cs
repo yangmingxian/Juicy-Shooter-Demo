@@ -20,10 +20,14 @@ public class PlayerMovement : MonoBehaviour
 
     protected void Update()
     {
+        if (PlayerStatus.isDead)
+            return;
         HandleInputs();
     }
     protected void FixedUpdate()
     {
+        if (PlayerStatus.isDead)
+            return;
         Move();
     }
 
@@ -32,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         direction = new Vector2(moveX, moveY);
-        if (direction.magnitude > 0)
+        if (direction.magnitude > 0 && !isDashing)
         {
             animationController.PlayMoveLoop();
         }
@@ -40,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animationController.PlayIdleLoop();
         }
+        else if (direction.magnitude > 0 && isDashing)
+        {
+            animationController.PlayDashLoop();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -102,7 +111,8 @@ public class PlayerMovement : MonoBehaviour
         dashCooldownTimer = dashCooldown;
         StartCoroutine(DashCooldownTimer());
         speedLine.Stop();
-        
+        // animationController.PlayIdleLoop();
+
     }
     IEnumerator DashCooldownTimer()
     {

@@ -5,6 +5,13 @@ using UnityEngine;
 public class EnemyStatus : Status
 {
     public bool isDead;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        isDead = false;
+    }
+
     public override void ReveiveDamage(float damageAmount)
     {
         hitFeedbackPlayer.PlayFeedbacks();

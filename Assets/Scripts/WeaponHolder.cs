@@ -35,6 +35,8 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
+         if (PlayerStatus.isDead)
+            return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             curWeapon.ReloadInterrupt();

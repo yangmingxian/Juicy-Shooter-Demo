@@ -139,7 +139,8 @@ MonoBehaviour:
   damage: 0
   rb: {fileID: 0}
   speed: 20
-  hitVFX: {fileID: 0}
+  hitVFX: {fileID: 3831764052202667614, guid: 2894ce17054b80c4e9993fd19391fdb3, type: 3}
+  explodeAnimClip: {fileID: 7400000, guid: 8f390189c8da18346bae8da2f27bb27d, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
