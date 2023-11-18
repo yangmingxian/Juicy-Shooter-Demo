@@ -171,4 +171,10 @@ public class GameController : MonoBehaviour
         DOTween.KillAll();
         StopAllCoroutines();
     }
+
+    [Button]
+   public void StopGenEnemies()
+    {
+        StopAllCoroutines();
+    }
 }
