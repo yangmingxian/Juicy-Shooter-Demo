@@ -141,7 +141,7 @@ public class Pistol : Weapon
 
     private void Update()
     {
-        if (PlayerStatus.isDead)
+        if (PlayerStatus.isDead || GameController.isPaused)
             return;
         switch (weaponType)
         {

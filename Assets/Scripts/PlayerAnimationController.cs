@@ -85,4 +85,14 @@ public class PlayerAnimationController : MonoBehaviour
             spriteRenderer.flipX = false;
         }
     }
+
+    private void OnEnable()
+    {
+        PlayerStatus.PlayerDie += PlayDeath;
+    }
+    private void OnDisable()
+    {
+        PlayerStatus.PlayerDie -= PlayDeath;
+
+    }
 }

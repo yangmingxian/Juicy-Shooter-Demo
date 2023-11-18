@@ -1529,6 +1529,7 @@ MonoBehaviour:
   idleClip: {fileID: 7400000, guid: 0a8da18cc0a37a748a19c40e8b3afa1c, type: 2}
   moveClip: {fileID: 7400000, guid: ede1782a0f865514abe8a9997f885358, type: 2}
   deathClip: {fileID: 7400000, guid: f8c059b187a03974cbc818b9a1c209ef, type: 2}
+  hitClip: {fileID: 7400000, guid: 7bb4fa0c9f585bb4891abff6abb90c7b, type: 2}
   direction: {x: 0, y: 0}
   speed: 35
   moveDamping: 0.2

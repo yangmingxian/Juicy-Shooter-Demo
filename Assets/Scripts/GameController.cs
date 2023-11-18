@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Animancer;
 using MoreMountains.Feedbacks;
 using DG.Tweening;
+using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
+
+    [SerializeField, ReadOnly] public static bool isPaused;
 
     GameObject PlayerObj;
     private void Awake()
     {
         PlayerObj = GameObject.FindWithTag("Player");
+        enemyList.Clear();
+
     }
     private void Start()
     {
+        isPaused = false;
+        PlayerStatus.isDead = false;
+        isGeneratingEnemy = false;
         UpdateFramerate();
-        InvokeRepeating(nameof(StartSpawn), 0, SpawnCoolDown);
+        // InvokeRepeating(nameof(StartSpawn), 0, SpawnCoolDown);
 
     }
 
@@ -39,11 +45,32 @@ public class GameController : MonoBehaviour
 
     #region EnemySpawn
     [SerializeField] int minEnemyLimit = 10;
-    [SerializeField] float SpawnCoolDown = 5f;
+    // [SerializeField] float SpawnCoolDown = 5f;
     readonly WaitForSeconds SpawnCoolDownSmall = new(0.3f);
     [SerializeField] Vector2Int SpawnNumRange = new(3, 5);
     [SerializeField] Vector2 SpawnDistRange = new(2, 10);
     public static List<EnemyController> enemyList = new();
+
+    [SerializeField] bool isGeneratingEnemy;
+
+    private void Update()
+    {
+        if (!isGeneratingEnemy && enemyList.Count < minEnemyLimit)
+        {
+            StartSpawn();
+            // InvokeRepeating(nameof(StartSpawn), 0, SpawnCoolDown);
+            isGeneratingEnemy = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+
+    }
 
     [Button]
     void StartSpawn()
@@ -66,6 +93,7 @@ public class GameController : MonoBehaviour
             Summon(pos);
             yield return SpawnCoolDownSmall;
         }
+        isGeneratingEnemy = false;
     }
 
 
@@ -96,10 +124,34 @@ public class GameController : MonoBehaviour
 
     #region Game Routine
     [SerializeField] MMF_Player gameOverFeedback;
+    [SerializeField] MMF_Player pauseGameFeedback;
+    [SerializeField] MMF_Player resumeGameFeedback;
+
+
+
     public void GameOver()
     {
-
+        gameOverFeedback.PlayFeedbacks();
     }
+
+    public void PauseGame()
+    {
+        if (isPaused || !pauseGameFeedback)
+            return;
+        pauseGameFeedback.PlayFeedbacks();
+        // Time.timeScale = 1;
+        isPaused = true;
+    }
+    public void ResumeGame()
+    {
+        if (!isPaused || !resumeGameFeedback)
+            return;
+        resumeGameFeedback.PlayFeedbacks();
+        // Time.timeScale = 0;
+        isPaused = false;
+    }
+
+
 
     #endregion
 
@@ -112,5 +164,11 @@ public class GameController : MonoBehaviour
     {
         PlayerStatus.PlayerDie -= GameOver;
 
+
+    }
+    private void OnDestroy()
+    {
+        DOTween.KillAll();
+        StopAllCoroutines();
     }
 }

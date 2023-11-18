@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Animancer;
+using MoreMountains.Feedbacks;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(PerformDash());
         }
     }
-
+    [SerializeField] MMF_Player dashFeedback;
 
     IEnumerator PerformDash()
     {
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         speedLine.Play();
 
+        dashFeedback.PlayFeedbacks();
 
         float elapsedTime = 0f;
         while (elapsedTime < dashDuration)

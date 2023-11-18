@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] AnimationClip idleClip;
     [SerializeField] AnimationClip moveClip;
     [SerializeField] AnimationClip deathClip;
+    [SerializeField] AnimationClip hitClip;
+
 
 
 
@@ -78,8 +80,10 @@ public class EnemyController : MonoBehaviour
 
     public void Appear(float time)
     {
-        enemySprite.DOColor(Color.white, time);
-        weaponSprite.DOColor(Color.white, time);
+        if (enemySprite)
+            enemySprite.DOColor(Color.white, time);
+        if (weaponSprite)
+            weaponSprite.DOColor(Color.white, time);
     }
 
 
@@ -88,7 +92,15 @@ public class EnemyController : MonoBehaviour
         _animancer.Play(idleClip);
         var state = _animancer.Play(idleClip);
         _animancer.Play(idleClip).Time = 0;
-        state.Events.OnEnd = () => state.IsPlaying = false;
+        // state.Events.OnEnd = () => state.IsPlaying = false;
+    }
+
+    public void PlayHitAnimOnce()
+    {
+        _animancer.Play(hitClip);
+        var state = _animancer.Play(hitClip);
+        _animancer.Play(hitClip).Time = 0;
+        // state.Events.OnEnd = () => state.IsPlaying = false;
     }
 
 
