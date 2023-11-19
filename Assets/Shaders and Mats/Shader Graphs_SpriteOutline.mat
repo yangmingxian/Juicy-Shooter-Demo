@@ -61,5 +61,5 @@ Material:
     - _offset: 0.75
     m_Colors:
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 2, g: 2, b: 2, a: 1}
   m_BuildTextureStacks: []

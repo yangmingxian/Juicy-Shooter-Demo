@@ -341,7 +341,7 @@ MonoBehaviour:
               m_RotationOrder: 4
             m_AttackTime: 0
             m_SustainTime: 0.2
-            m_DecayTime: 0
+            m_DecayTime: 0.2
             m_ScaleWithImpact: 1
             m_HoldForever: 0
           m_ImpactRadius: 100
@@ -349,7 +349,7 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 2, y: 2, z: 2}
+        Velocity: {x: 2.5, y: 2.5, z: 2.5}
         ClearImpulseOnStop: 0
     - rid: 5547664376257576969
       type: {class: MMF_MMSoundManagerSound, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}

@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         isPaused = false;
+        gameOver = false;
         PlayerStatus.isDead = false;
         isGeneratingEnemy = false;
         UpdateFramerate();
@@ -52,6 +53,8 @@ public class GameController : MonoBehaviour
     public static List<EnemyController> enemyList = new();
 
     [SerializeField] bool isGeneratingEnemy;
+    [SerializeField] bool gameOver;
+
 
     private void Update()
     {
@@ -62,7 +65,7 @@ public class GameController : MonoBehaviour
             isGeneratingEnemy = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
         {
             if (isPaused)
                 ResumeGame();
@@ -99,6 +102,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] SummonFX summonFXPrefab;
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject[] enemyPrefabArray;
+
     [SerializeField] float spawnDelay = 1f;
 
     [Button]
@@ -107,6 +112,26 @@ public class GameController : MonoBehaviour
 
         StartCoroutine(SummonCoroutine(pos));
     }
+
+    // IEnumerator SummonCoroutine(Vector3 pos)
+    // {
+    //     var summonFXObj = ObjectPoolManager.GetObject(summonFXPrefab.gameObject);
+
+    //     summonFXObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
+    //     var summonFX = summonFXObj.GetComponent<SummonFX>();
+    //     summonFX.PlayFX();
+    //     yield return new WaitForSeconds(spawnDelay);
+
+    //     var enemyObj = ObjectPoolManager.GetObject(enemyPrefab);
+    //     enemyObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
+    //     var enemy = enemyObj.GetComponent<EnemyController>();
+    //     enemy.Appear(0.2f);
+    //     enemyList.Add(enemy);
+    //     yield return new WaitForSeconds(0.2f);
+    //     summonFX.circleSpriteRenderer.DOColor(Color.clear, 0.5f);
+    //     enemy.active = true;
+    // }
+
 
     IEnumerator SummonCoroutine(Vector3 pos)
     {
@@ -117,8 +142,10 @@ public class GameController : MonoBehaviour
         summonFX.PlayFX();
         yield return new WaitForSeconds(spawnDelay);
 
-        var enemyObj = ObjectPoolManager.GetObject(enemyPrefab);
-        enemyObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
+        // Select a random enemy prefab from the array
+        int randomIndex = Random.Range(0, enemyPrefabArray.Length);
+        var enemyObj = ObjectPoolManager.GetObject(enemyPrefabArray[randomIndex]);
+        enemyObj.transform.SetPositionAndRotation(pos, enemyPrefabArray[randomIndex].transform.rotation);
         var enemy = enemyObj.GetComponent<EnemyController>();
         enemy.Appear(0.2f);
         enemyList.Add(enemy);
@@ -137,6 +164,7 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
+        gameOver = true;
         gameOverFeedback.PlayFeedbacks();
     }
 
