@@ -19546,7 +19546,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5DE6\u952E\uFF1A\u5F00\u706B\n\u53F3\u952E : \u7784\u51C6\nshift: \u51B2\u523A\nR\uFF1A\u88C5\u586B\nQ\uFF1A\u5207\u6362\n"
+  m_text: "WASD: \u79FB\u52A8\n\u5DE6\u952E: \u5C04\u51FB\n\u53F3\u952E: \u7784\u51C6\nQ:
+    \u5207\u6362\u6B66\u5668\nShift: \u95EA\u907F\nR: \u6362\u5F39\nEsc: \u83DC\u5355\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3a5f162c6428304e90dcb799b73125e, type: 2}
   m_sharedMaterial: {fileID: 961202584510427773, guid: c3a5f162c6428304e90dcb799b73125e,
@@ -19584,8 +19585,8 @@ MonoBehaviour:
   m_HorizontalAlignment: 32
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_characterSpacing: 5
+  m_wordSpacing: 10
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
