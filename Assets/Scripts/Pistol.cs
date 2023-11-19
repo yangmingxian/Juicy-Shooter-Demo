@@ -239,7 +239,7 @@ public class Pistol : Weapon
 
     private IEnumerator ShootBurstCoroutine(int num, float delay)
     {
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < num && i < ammo; i++)
         {
             ShootOnce();
             yield return new WaitForSeconds(delay);

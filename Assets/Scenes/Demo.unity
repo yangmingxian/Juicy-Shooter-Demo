@@ -12405,12 +12405,12 @@ MonoBehaviour:
   bulletsNum: 2
   attackSpeed: 20
   damage: 30
-  CritDamage: 0.25
-  CritRate: 0
+  CritDamage: 40
+  CritRate: 0.25
   burstNum: 3
   burstDelay: 0.05
-  spreadAngle: 10
-  recoil: 10
+  spreadAngle: 5
+  recoil: 15
   hitForce: 200
   shellPrefab: {fileID: 1198409346625369720, guid: 7e27e7cf93803794db332016514a2c31,
     type: 3}
@@ -12483,10 +12483,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1760568872369512146, guid: c7176b6044207e04686f36979be749eb,
     type: 3}
   firePoint: {fileID: 2009682343}
-  bulletsNum: 1
+  bulletsNum: 2
   attackSpeed: 15
-  damage: 15
-  CritDamage: 20
+  damage: 25
+  CritDamage: 40
   CritRate: 0.25
   burstNum: 3
   burstDelay: 0.05
@@ -16268,9 +16268,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1760568872369512146, guid: 9a691e11f0756824c8cc1e96b9a57cb4,
     type: 3}
   firePoint: {fileID: 1103687420}
-  bulletsNum: 1
+  bulletsNum: 2
   attackSpeed: 10
-  damage: 20
+  damage: 30
   CritDamage: 50
   CritRate: 0.25
   burstNum: 4
@@ -16580,7 +16580,6 @@ MonoBehaviour:
   - rid: 5547664393178447880
   - rid: 5547664393178447881
   - rid: 5547664393178447882
-  - rid: 5547664393178447883
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -16698,7 +16697,7 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 0.5, y: 0.5, z: 0.5}
+        Velocity: {x: 1, y: 1, z: 1}
         ClearImpulseOnStop: 0
     - rid: 5547664393178447879
       type: {class: MMF_Bloom_URP, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.URP}
@@ -17236,82 +17235,6 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
-    - rid: 5547664393178447883
-      type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -1747629749
-        Label: Pause
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 995715230}
-        DebugActive: 0
-        PauseDuration: 0.1
-        RandomizePauseDuration: 0
-        MinPauseDuration: 1
-        MaxPauseDuration: 3
-        RandomizeOnEachPlay: 1
-        ScriptDriven: 0
-        AutoResume: 0
-        AutoResumeAfter: 0.25
 --- !u!1 &1006602980
 GameObject:
   m_ObjectHideFlags: 0
@@ -19376,12 +19299,12 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 0.5, y: 0.5, z: 0.5}
+        Velocity: {x: 1.5, y: 1.5, z: 1.5}
         ClearImpulseOnStop: 0
     - rid: 5547664393178447879
       type: {class: MMF_Bloom_URP, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.URP}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 142040211
         Label: Bloom URP
         ChannelMode: 0
@@ -20628,7 +20551,7 @@ MonoBehaviour:
   firePoint: {fileID: 1831812545}
   bulletsNum: 1
   attackSpeed: 10
-  damage: 20
+  damage: 30
   CritDamage: 40
   CritRate: 0.5
   burstNum: 3
@@ -20902,7 +20825,6 @@ MonoBehaviour:
   - rid: 5547664393178447880
   - rid: 5547664393178447881
   - rid: 5547664393178447882
-  - rid: 5547664393178447883
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -21020,12 +20942,12 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 0.5, y: 0.5, z: 0.5}
+        Velocity: {x: 1, y: 1, z: 1}
         ClearImpulseOnStop: 0
     - rid: 5547664393178447879
       type: {class: MMF_Bloom_URP, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.URP}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 142040211
         Label: Bloom URP
         ChannelMode: 0
@@ -21128,7 +21050,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapIntensityZero: 0
-        RemapIntensityOne: 0.8
+        RemapIntensityOne: 1
         ShakeThreshold:
           serializedVersion: 2
           m_Curve:
@@ -21558,82 +21480,6 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
-    - rid: 5547664393178447883
-      type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -1747629749
-        Label: Pause
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 1211605949}
-        DebugActive: 0
-        PauseDuration: 0.1
-        RandomizePauseDuration: 0
-        MinPauseDuration: 1
-        MaxPauseDuration: 3
-        RandomizeOnEachPlay: 1
-        ScriptDriven: 0
-        AutoResume: 0
-        AutoResumeAfter: 0.25
 --- !u!1 &1213614131
 GameObject:
   m_ObjectHideFlags: 0
@@ -29668,12 +29514,12 @@ MonoBehaviour:
           m_DissipationMode: 2
           m_DissipationDistance: 100
           m_PropagationSpeed: 343
-        Velocity: {x: 0.5, y: 0.5, z: 0.5}
+        Velocity: {x: 1.5, y: 1.5, z: 1.5}
         ClearImpulseOnStop: 0
     - rid: 5547664393178447879
       type: {class: MMF_Bloom_URP, ns: MoreMountains.FeedbacksForThirdParty, asm: MoreMountains.Feedbacks.URP}
       data:
-        Active: 0
+        Active: 1
         UniqueID: 142040211
         Label: Bloom URP
         ChannelMode: 0
@@ -29776,7 +29622,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapIntensityZero: 0
-        RemapIntensityOne: 0.8
+        RemapIntensityOne: 1
         ShakeThreshold:
           serializedVersion: 2
           m_Curve:
@@ -30350,7 +30196,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 1562351595}
         DebugActive: 0
-        Sfx: {fileID: 8300000, guid: c522451a57e5dea4d9b31baa35e13e36, type: 3}
+        Sfx: {fileID: 0}
         RandomSfx:
         - {fileID: 8300000, guid: c522451a57e5dea4d9b31baa35e13e36, type: 3}
         - {fileID: 8300000, guid: bd2eabee2af81ce48990093abd32e544, type: 3}
@@ -32591,12 +32437,12 @@ MonoBehaviour:
   firePoint: {fileID: 1612544507}
   bulletsNum: 10
   attackSpeed: 4
-  damage: 20
-  CritDamage: 40
-  CritRate: 0.5
+  damage: 40
+  CritDamage: 50
+  CritRate: 0.25
   burstNum: 3
   burstDelay: 0.05
-  spreadAngle: 30
+  spreadAngle: 25
   recoil: 50
   hitForce: 200
   shellPrefab: {fileID: 1198409346625369720, guid: 7718a9886f1f44f489fd873c33fae0bf,
@@ -39661,7 +39507,7 @@ MonoBehaviour:
   bulletsNum: 1
   attackSpeed: 2
   damage: 75
-  CritDamage: 100
+  CritDamage: 150
   CritRate: 0.5
   burstNum: 3
   burstDelay: 0.05
@@ -40307,7 +40153,6 @@ MonoBehaviour:
   - rid: 5547664393178447880
   - rid: 5547664393178447881
   - rid: 5547664393178447882
-  - rid: 5547664393178447883
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -40963,82 +40808,6 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
-    - rid: 5547664393178447883
-      type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -1747629749
-        Label: Pause
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 2132203298}
-        DebugActive: 0
-        PauseDuration: 0.1
-        RandomizePauseDuration: 0
-        MinPauseDuration: 1
-        MaxPauseDuration: 3
-        RandomizeOnEachPlay: 1
-        ScriptDriven: 0
-        AutoResume: 0
-        AutoResumeAfter: 0.25
 --- !u!1 &2141362998
 GameObject:
   m_ObjectHideFlags: 0
@@ -46949,7 +46718,6 @@ MonoBehaviour:
   - rid: 5547664393178447880
   - rid: 5547664393178447881
   - rid: 5547664393178447882
-  - rid: 5547664393178447883
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -47605,82 +47373,6 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
-    - rid: 5547664393178447883
-      type: {class: MMF_Pause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -1747629749
-        Label: Pause
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 3470419796893211354}
-        DebugActive: 0
-        PauseDuration: 0.1
-        RandomizePauseDuration: 0
-        MinPauseDuration: 1
-        MaxPauseDuration: 3
-        RandomizeOnEachPlay: 1
-        ScriptDriven: 0
-        AutoResume: 0
-        AutoResumeAfter: 0.25
 --- !u!95 &3470419797339980068
 Animator:
   serializedVersion: 4

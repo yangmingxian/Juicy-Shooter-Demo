@@ -50,7 +50,7 @@ public class Explosion : MonoBehaviour
             if (TryGetComponent<EnemyStatus>(out var enemyStatus))
             {
                 Vector2 dist = c.transform.position - transform.position;
-                float explositonDamage = Mathf.Clamp(explosionDamagePerUnitDist / dist.magnitude, 10, 50);
+                float explositonDamage = Mathf.Clamp(explosionDamagePerUnitDist / dist.magnitude, 20, 50);
             }
         }
     }

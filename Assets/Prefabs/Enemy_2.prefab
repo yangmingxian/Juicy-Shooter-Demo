@@ -3060,7 +3060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 200
+  maxHealth: 150
   hitFeedbackPlayer: {fileID: 1688891335033339721}
   isDead: 0
 --- !u!1 &1688891336749778817
