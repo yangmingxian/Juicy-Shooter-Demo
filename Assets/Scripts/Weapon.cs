@@ -84,10 +84,7 @@ public class Weapon : MonoBehaviour
     public void Reload()
     {
         reloadFeedback.GetFeedbackOfType<MMF_Position>("Position").AnimatePositionDuration = reloadDuration;
-        reloadFeedback.GetFeedbackOfType<MMF_Pause>("ReloadEndPause").PauseDuration = reloadDuration-0.2f;
-
-
-        // reloadFeedback.GetFeedbackOfType<MMF_MMSoundManagerSound>("ReloadEndSound").AnimatePositionDuration = reloadDuration;
+        reloadFeedback.GetFeedbackOfType<MMF_Pause>("ReloadEndPause").PauseDuration = reloadDuration - 0.2f;
 
         reloadFeedback.ComputeCachedTotalDuration();
         reloadFeedback.PlayFeedbacks();
@@ -115,5 +112,7 @@ public class Weapon : MonoBehaviour
         reloading = false;
         _UI.UpdaeWeaponAmmoUI(this);
     }
+
+    public virtual void PlayIdle() { }
 
 }

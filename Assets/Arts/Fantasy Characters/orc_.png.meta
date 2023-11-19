@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: orc_idle5
+      name: orc_5
       rect:
         serializedVersion: 2
         x: 0
@@ -150,7 +150,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle6
+      name: orc_6
       rect:
         serializedVersion: 2
         x: 24
@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle7
+      name: orc_7
       rect:
         serializedVersion: 2
         x: 48
@@ -192,7 +192,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle8
+      name: orc_8
       rect:
         serializedVersion: 2
         x: 72
@@ -213,7 +213,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle1
+      name: orc_1
       rect:
         serializedVersion: 2
         x: 96
@@ -234,7 +234,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle2
+      name: orc_2
       rect:
         serializedVersion: 2
         x: 120
@@ -255,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle3
+      name: orc_3
       rect:
         serializedVersion: 2
         x: 144
@@ -276,7 +276,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc_idle4
+      name: orc_4
       rect:
         serializedVersion: 2
         x: 168

@@ -12,28 +12,11 @@ public class GameController : MonoBehaviour
     [ReadOnly] public static bool isPaused;
     GameObject PlayerObj;
 
-    public static ObjectPool<GameObject> enemyPool;
-    public static ObjectPool<GameObject> spawnVFXPool;
 
     private void Awake()
     {
         PlayerObj = GameObject.FindWithTag("Player");
         enemyList.Clear();
-
-        enemyPool = new ObjectPool<GameObject>(
-          () => Instantiate(enemyPrefab), // 创建新对象的方法
-          (obj) => obj.SetActive(true), // 重置对象的方法
-          (obj) => obj.SetActive(false), // 激活对象的方法
-          (obj) => Destroy(obj)
-      );
-
-        spawnVFXPool = new ObjectPool<GameObject>(
-      () => Instantiate(summonFXPrefab.gameObject), // 创建新对象的方法
-      (obj) => obj.SetActive(true), // 重置对象的方法
-      (obj) => obj.SetActive(false), // 激活对象的方法
-      (obj) => Destroy(obj)
-  );
-
     }
     private void Start()
     {
@@ -42,15 +25,14 @@ public class GameController : MonoBehaviour
         isGeneratingEnemy = false;
         UpdateFramerate();
         // InvokeRepeating(nameof(StartSpawn), 0, SpawnCoolDown);
-
     }
 
     #region Global Game Control
     [Tooltip("1:enable 0:disable 2:half")]
-    [SerializeField] public static int vSyncCount = 1;
-    [SerializeField] public static int framerate = 144;
+    public static int vSyncCount = 1;
+    public static int framerate = 144;
     [Button]
-   public static void UpdateFramerate()
+    public static void UpdateFramerate()
     {
         QualitySettings.vSyncCount = vSyncCount;
         if (vSyncCount == 0)
@@ -128,9 +110,6 @@ public class GameController : MonoBehaviour
 
     IEnumerator SummonCoroutine(Vector3 pos)
     {
-        // var summonFXObj = GameObject.Instantiate(summonFXPrefab.gameObject);
-
-        // var summonFXObj = ObjectPool.Instance.GetObject(summonFXPrefab.gameObject);
         var summonFXObj = ObjectPoolManager.GetObject(summonFXPrefab.gameObject);
 
         summonFXObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
@@ -138,9 +117,7 @@ public class GameController : MonoBehaviour
         summonFX.PlayFX();
         yield return new WaitForSeconds(spawnDelay);
 
-        // var enemyObj = GameObject.Instantiate(enemyPrefab);
         var enemyObj = ObjectPoolManager.GetObject(enemyPrefab);
-        // var enemyObj = ObjectPool.Instance.GetObject(enemyPrefab);
         enemyObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
         var enemy = enemyObj.GetComponent<EnemyController>();
         enemy.Appear(0.2f);

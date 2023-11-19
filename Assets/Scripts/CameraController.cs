@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     public CinemachineVirtualCamera CharacterDeathCam;
 
-
     public Transform aimTrans;
     public float aimDuration;
     public Ease ease;

@@ -25,6 +25,7 @@ public class Shell : MonoBehaviour
     }
     private void OnEnable()
     {
+        spriteRenderer.color = Color.white;
         var angle = Random.Range(ejectOffset.x, ejectOffset.y);
         var dist = Random.Range(speed.x, speed.y);
         rb.velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up * dist;

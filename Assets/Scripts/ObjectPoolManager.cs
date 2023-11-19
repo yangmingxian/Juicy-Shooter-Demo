@@ -4,71 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Pool;
 public class ObjectPoolManager : MonoBehaviour
 {
-    // public GameObject bulletPrefab;
-    // public GameObject shellPrefab;
-    // public GameObject bulletExplodePrefab;
-    // public GameObject enemyPrefab;
-    // public GameObject spawnVFXPrefab;
-    // public GameObject explosionPrefab;
-
-
-    // public static UnityEngine.Pool.ObjectPool<GameObject> bulletPool;
-    // public static UnityEngine.Pool.ObjectPool<GameObject> shellPool;
-    // public static UnityEngine.Pool.ObjectPool<GameObject> bulletExplodePool;
-
-    // public static UnityEngine.Pool.ObjectPool<GameObject> enemyPool;
-    // public static UnityEngine.Pool.ObjectPool<GameObject> spawnVFXPool;
-
-    // public static UnityEngine.Pool.ObjectPool<GameObject> explosionPool;
-
-    // private void Awake()
-    // {
-    //     bulletPool = new ObjectPool<GameObject>(
-    //            () => GameObject.Instantiate(bulletPrefab),
-    //            (obj) => obj.SetActive(true),
-    //            (obj) => obj.SetActive(false),
-    //            (obj) => GameObject.Destroy(obj)
-    //        );
-    //     shellPool = new ObjectPool<GameObject>(
-    //         () => GameObject.Instantiate(shellPrefab),
-    //         (obj) => obj.SetActive(true),
-    //         (obj) => obj.SetActive(false),
-    //         (obj) => GameObject.Destroy(obj)
-    //     );
-    //     bulletExplodePool = new ObjectPool<GameObject>(
-    //      () => GameObject.Instantiate(bulletExplodePrefab),
-    //      (obj) => obj.SetActive(true),
-    //      (obj) => obj.SetActive(false),
-    //      (obj) => GameObject.Destroy(obj)
-    //  );
-    //     enemyPool = new ObjectPool<GameObject>(
-    //      () => GameObject.Instantiate(enemyPrefab),
-    //      (obj) => obj.SetActive(true),
-    //      (obj) => obj.SetActive(false),
-    //      (obj) => GameObject.Destroy(obj)
-    //  );
-    //     spawnVFXPool = new ObjectPool<GameObject>(
-    //      () => GameObject.Instantiate(spawnVFXPrefab),
-    //      (obj) => obj.SetActive(true),
-    //      (obj) => obj.SetActive(false),
-    //      (obj) => GameObject.Destroy(obj)
-    //  );
-    //     explosionPool = new ObjectPool<GameObject>(
-    //      () => GameObject.Instantiate(explosionPrefab),
-    //      (obj) => obj.SetActive(true),
-    //      (obj) => obj.SetActive(false),
-    //      (obj) => GameObject.Destroy(obj)
-    //  );
-    // }
-    private void Start()
-    {
-        objectPool.Clear();
-    }
-
     // private static ObjectPool instance;
     private static Dictionary<string, Queue<GameObject>> objectPool = new();
     private static GameObject pool;
-
 
     // public static ObjectPool Instance
     // {
@@ -116,12 +54,10 @@ public class ObjectPoolManager : MonoBehaviour
         prefab.SetActive(false);
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
         objectPool.Clear();
     }
-
-
 
 
 }

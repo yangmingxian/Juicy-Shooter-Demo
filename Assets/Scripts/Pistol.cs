@@ -9,7 +9,6 @@ using UnityEngine.Pool;
 public class Pistol : Weapon
 {
     public WeaponType weaponType = WeaponType.semi;
-
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] Transform firePoint;
 
@@ -21,21 +20,12 @@ public class Pistol : Weapon
 
     public int burstNum = 3;
     public float burstDelay = 0.05f;
-
     public float spreadAngle;
-
     public float recoil = 10;
-
     public float hitForce;
-
 
     [SerializeField] Shell shellPrefab;
     [SerializeField] Transform shellEjectTrans;
-
-
-    // public static UnityEngine.Pool.ObjectPool<GameObject> shellPool;
-    // public static UnityEngine.Pool.ObjectPool<GameObject> bulletPool;
-
 
     [SerializeField] MMF_Player shootFeedbackPlayer;
 
@@ -46,18 +36,6 @@ public class Pistol : Weapon
         {
             shootFeedbackPlayer = transform.Find("ShootFeedback").GetComponent<MMF_Player>();
         }
-
-        //         shellPool = new ObjectPool<GameObject>(
-        // () => Instantiate(shellPrefab.gameObject), // 创建新对象的方法
-        // (obj) => obj.SetActive(true), // 重置对象的方法
-        // (obj) => obj.SetActive(false), // 激活对象的方法
-        // (obj) => Destroy(obj));
-
-        //         bulletPool = new ObjectPool<GameObject>(
-        // () => Instantiate(bulletPrefab.gameObject), // 创建新对象的方法
-        // (obj) => obj.SetActive(true), // 重置对象的方法
-        // (obj) => obj.SetActive(false), // 激活对象的方法
-        // (obj) => Destroy(obj));
 
     }
     // void ReturnBulletToPool(Bullet instance)
@@ -203,21 +181,11 @@ public class Pistol : Weapon
 
         for (int i = 0; i < bulletsNum; i++)
         {
-
-
             var bulletObj = ObjectPoolManager.GetObject(bulletPrefab.gameObject);
-            // var bulletObj = GameObject.Instantiate(bulletPrefab.gameObject);
-            // var bulletObj = ObjectPool.Instance.GetObject(bulletPrefab.gameObject);
             if (!bulletObj)
             {
-                for (int j = 0; j < 30; j++)
-                {
-                    bulletObj = ObjectPoolManager.GetObject(bulletPrefab.gameObject);
-                    if (!bulletObj)
-                        continue;
-                    else
-                        break;
-                }
+
+                return;
             }
             if (bulletObj.TryGetComponent<Bullet>(out var bullet))
             {
@@ -286,13 +254,11 @@ public class Pistol : Weapon
     void EjectShell()
     {
         var shell = ObjectPoolManager.GetObject(shellPrefab.gameObject);
+        if (!shell)
+        {
+            return;
+        }
         shell.transform.SetPositionAndRotation(shellEjectTrans.position, shellEjectTrans.rotation);
-
-        // var shell = LeanPool.Spawn(shellPrefab, shellEjectTrans.position, shellEjectTrans.rotation);
-        // shell.transform.SetParent(shellContainer);
-        // var shell = shellPool.Get();
-        // shell.transform.SetPositionAndRotation(shellEjectTrans.position, shellEjectTrans.rotation);
-        // shell.Disable += ReturnShellToPool;
     }
 
     public void PlayShootAnim()
@@ -303,7 +269,7 @@ public class Pistol : Weapon
         _animancer.Play(shootClip).Time = 0;
         state.Events.OnEnd = PlayIdle;
     }
-    void PlayIdle()
+    public override void PlayIdle()
     {
         _animancer.Play(idleClip);
         var state = _animancer.Play(idleClip);

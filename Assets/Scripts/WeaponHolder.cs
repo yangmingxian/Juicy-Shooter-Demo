@@ -55,13 +55,13 @@ public class WeaponHolder : MonoBehaviour
                 index = 0;
             }
             curWeapon = weapons[index];
+           
             curWeapon.gameObject.SetActive(true);
+             curWeapon.PlayIdle();
             _UI.UIChangeWeapon(curWeapon);
         }
 
     }
-
-
 
 
 

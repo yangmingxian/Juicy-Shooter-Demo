@@ -10,10 +10,8 @@ using DG.Tweening;
 public class EnemyController : MonoBehaviour
 {
     protected Rigidbody2D rb;
-
     [SerializeField] SpriteRenderer enemySprite;
     [SerializeField] SpriteRenderer weaponSprite;
-
 
     AnimancerComponent _animancer;
     [SerializeField] AnimationClip idleClip;
@@ -22,24 +20,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField] AnimationClip hitClip;
 
 
-
-
     public Vector2 direction;
     public float speed = 50f;
     public float moveDamping = 0.2f;
 
     MeleeWeapon meleeWeapon;
     public LayerMask layerMask;
-
     public float deathExplodeProb = 0.25f;
-
 
     public float attackRange = 1f;
     public float attackCooldown = 1f;
     public float attackDamage = 10f;
 
     public bool active = false;
-
     EnemyStatus status;
 
     private void Awake()
