@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Animancer;
-using Lean.Pool;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -42,10 +41,9 @@ public class Bullet : MonoBehaviour
                 state.Events.OnEnd = () => Destroy(explode.gameObject);
             }
         }
+        // GetComponent<Collider2D>().enabled = false;
+        ObjectPoolManager.PushObject(gameObject);
 
-        // Destroy(gameObject);
-        // Disable?.Invoke(this);
-        LeanPool.Despawn(gameObject);
 
         if (other.tag is "Enemy")
         {
@@ -62,9 +60,26 @@ public class Bullet : MonoBehaviour
         }
     }
 
+
+
     bool LayerContains(LayerMask mask, int layer)
     {
         return ((mask.value & (1 << layer)) > 0);
+    }
+
+    private IEnumerator TimeoutDestroySelf()
+    {
+        yield return new WaitForSeconds(5f);
+        ObjectPoolManager.PushObject(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(TimeoutDestroySelf());
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
 

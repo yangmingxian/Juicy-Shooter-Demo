@@ -5,7 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using MoreMountains.Feedbacks;
 using UnityEngine.Pool;
-using Lean.Pool;
+// using UnityEngine.Pool;
 public class Pistol : Weapon
 {
     public WeaponType weaponType = WeaponType.semi;
@@ -32,14 +32,9 @@ public class Pistol : Weapon
     [SerializeField] Shell shellPrefab;
     [SerializeField] Transform shellEjectTrans;
 
-    // Pool<Bullet> bulletPool;
-    // Pool<Shell> shellPool;
 
-    ObjectPool<Bullet> bulletPool;
-    ObjectPool<Shell> shellPool;
-
-    Transform bulletContainer;
-    Transform shellContainer;
+    // public static UnityEngine.Pool.ObjectPool<GameObject> shellPool;
+    // public static UnityEngine.Pool.ObjectPool<GameObject> bulletPool;
 
 
     [SerializeField] MMF_Player shootFeedbackPlayer;
@@ -51,14 +46,19 @@ public class Pistol : Weapon
         {
             shootFeedbackPlayer = transform.Find("ShootFeedback").GetComponent<MMF_Player>();
         }
-        bulletContainer = GameObject.FindWithTag("Pool").transform.Find("BulletPool").transform;
-        shellContainer = GameObject.FindWithTag("Pool").transform.Find("ShellPool").transform;
 
-        // bulletPool = Pool.Create(bulletPrefab, 0, bulletContainer);
-        // shellPool = Pool.Create(shellPrefab, 0, shellContainer);
+        //         shellPool = new ObjectPool<GameObject>(
+        // () => Instantiate(shellPrefab.gameObject), // 创建新对象的方法
+        // (obj) => obj.SetActive(true), // 重置对象的方法
+        // (obj) => obj.SetActive(false), // 激活对象的方法
+        // (obj) => Destroy(obj));
 
-        // bulletPool = new ObjectPool<Bullet>(CreatePooledObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, true, 10, 1000);
-        // shellPool = new ObjectPool<Shell>(CreatePooledShell, OnTakeShellFromPool, OnReturnShellToPool, OnDestroyShell, true, 10, 1000);
+        //         bulletPool = new ObjectPool<GameObject>(
+        // () => Instantiate(bulletPrefab.gameObject), // 创建新对象的方法
+        // (obj) => obj.SetActive(true), // 重置对象的方法
+        // (obj) => obj.SetActive(false), // 激活对象的方法
+        // (obj) => Destroy(obj));
+
     }
     // void ReturnBulletToPool(Bullet instance)
     // {
@@ -203,26 +203,41 @@ public class Pistol : Weapon
 
         for (int i = 0; i < bulletsNum; i++)
         {
-            // var bulletObj = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
-            // var bulletObj = bulletPool.Get();
-            // var bullet = bulletObj.GetComponent<Bullet>();
-            // var bullet = bulletPool.Get();
-            // bullet.Disable += ReturnBulletToPool;
 
-            var bullet = LeanPool.Spawn(bulletPrefab, firePoint.position, Quaternion.identity);
-            bullet.transform.SetParent(bulletContainer);
-            LeanPool.Despawn(bullet.gameObject, 2);
 
-            bullet.initFirePos = firePoint.position;
-            var spread = Random.Range(-spreadAngle, spreadAngle);
-            bullet.damage = damage;
+            var bulletObj = ObjectPoolManager.GetObject(bulletPrefab.gameObject);
+            // var bulletObj = GameObject.Instantiate(bulletPrefab.gameObject);
+            // var bulletObj = ObjectPool.Instance.GetObject(bulletPrefab.gameObject);
+            if (!bulletObj)
+            {
+                for (int j = 0; j < 30; j++)
+                {
+                    bulletObj = ObjectPoolManager.GetObject(bulletPrefab.gameObject);
+                    if (!bulletObj)
+                        continue;
+                    else
+                        break;
+                }
+            }
+            if (bulletObj.TryGetComponent<Bullet>(out var bullet))
+            {
+                bullet.transform.SetPositionAndRotation(firePoint.position, Quaternion.identity);
 
-            bullet.hitForce = hitForce;
-            bullet.layerMask = layerMask;
+                bullet.initFirePos = firePoint.position;
+                var spread = Random.Range(-spreadAngle, spreadAngle);
+                bullet.damage = damage;
 
-            bullet.transform.right = Quaternion.AngleAxis(spread, Vector3.forward) * direction;
+                bullet.hitForce = hitForce;
+                bullet.layerMask = layerMask;
 
-            bullet.rb.velocity = bullet.transform.right * bullet.speed;
+                bullet.transform.right = Quaternion.AngleAxis(spread, Vector3.forward) * direction;
+
+                bullet.rb.velocity = bullet.transform.right * bullet.speed;
+
+            }
+
+
+
         }
         Vector2 RecoilDir = playerMovement.transform.position - worldMousePosition;
         ApplyRecoil(RecoilDir);
@@ -270,8 +285,11 @@ public class Pistol : Weapon
 
     void EjectShell()
     {
-        var shell = LeanPool.Spawn(shellPrefab, shellEjectTrans.position, shellEjectTrans.rotation);
-        shell.transform.SetParent(shellContainer);
+        var shell = ObjectPoolManager.GetObject(shellPrefab.gameObject);
+        shell.transform.SetPositionAndRotation(shellEjectTrans.position, shellEjectTrans.rotation);
+
+        // var shell = LeanPool.Spawn(shellPrefab, shellEjectTrans.position, shellEjectTrans.rotation);
+        // shell.transform.SetParent(shellContainer);
         // var shell = shellPool.Get();
         // shell.transform.SetPositionAndRotation(shellEjectTrans.position, shellEjectTrans.rotation);
         // shell.Disable += ReturnShellToPool;

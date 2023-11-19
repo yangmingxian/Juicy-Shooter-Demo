@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Lean.Pool;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class Shell : MonoBehaviour
 {
@@ -23,6 +21,10 @@ public class Shell : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+    }
+    private void OnEnable()
+    {
         var angle = Random.Range(ejectOffset.x, ejectOffset.y);
         var dist = Random.Range(speed.x, speed.y);
         rb.velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up * dist;
@@ -34,17 +36,15 @@ public class Shell : MonoBehaviour
         yield return new WaitForSeconds(stopTime);
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
-
-        // spriteRenderer.DOColor(Color.clear, vanishTime).SetEase(Ease.Linear).OnComplete(
-        //   // () => Destroy(gameObject, 1f)
-        //   () => DestroySelf()
-        // );
+        yield return new WaitForSeconds(10f);
+        spriteRenderer.DOColor(Color.clear, vanishTime).SetEase(Ease.Linear).OnComplete(
+          () => ShellVanish()
+        );
     }
 
-    void DestroySelf()
+    void ShellVanish()
     {
-        // Disable?.Invoke(this);
-        LeanPool.Despawn(gameObject);
+        ObjectPoolManager.PushObject(gameObject);
     }
 
 }

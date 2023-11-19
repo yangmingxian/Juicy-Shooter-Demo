@@ -4,17 +4,35 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using MoreMountains.Feedbacks;
 using DG.Tweening;
+using UnityEngine.Pool;
 using UnityEngine.UI;
+
 public class GameController : MonoBehaviour
 {
-
-    [SerializeField, ReadOnly] public static bool isPaused;
-
+    [ReadOnly] public static bool isPaused;
     GameObject PlayerObj;
+
+    public static ObjectPool<GameObject> enemyPool;
+    public static ObjectPool<GameObject> spawnVFXPool;
+
     private void Awake()
     {
         PlayerObj = GameObject.FindWithTag("Player");
         enemyList.Clear();
+
+        enemyPool = new ObjectPool<GameObject>(
+          () => Instantiate(enemyPrefab), // 创建新对象的方法
+          (obj) => obj.SetActive(true), // 重置对象的方法
+          (obj) => obj.SetActive(false), // 激活对象的方法
+          (obj) => Destroy(obj)
+      );
+
+        spawnVFXPool = new ObjectPool<GameObject>(
+      () => Instantiate(summonFXPrefab.gameObject), // 创建新对象的方法
+      (obj) => obj.SetActive(true), // 重置对象的方法
+      (obj) => obj.SetActive(false), // 激活对象的方法
+      (obj) => Destroy(obj)
+  );
 
     }
     private void Start()
@@ -29,10 +47,10 @@ public class GameController : MonoBehaviour
 
     #region Global Game Control
     [Tooltip("1:enable 0:disable 2:half")]
-    [SerializeField] int vSyncCount = 1;
-    [SerializeField] int framerate = 60;
+    [SerializeField] public static int vSyncCount = 1;
+    [SerializeField] public static int framerate = 144;
     [Button]
-    void UpdateFramerate()
+   public static void UpdateFramerate()
     {
         QualitySettings.vSyncCount = vSyncCount;
         if (vSyncCount == 0)
@@ -104,15 +122,26 @@ public class GameController : MonoBehaviour
     [Button]
     public void Summon(Vector3 pos)
     {
+
         StartCoroutine(SummonCoroutine(pos));
     }
 
     IEnumerator SummonCoroutine(Vector3 pos)
     {
-        var summonFX = GameObject.Instantiate(summonFXPrefab, pos, enemyPrefab.transform.rotation);
+        // var summonFXObj = GameObject.Instantiate(summonFXPrefab.gameObject);
+
+        // var summonFXObj = ObjectPool.Instance.GetObject(summonFXPrefab.gameObject);
+        var summonFXObj = ObjectPoolManager.GetObject(summonFXPrefab.gameObject);
+
+        summonFXObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
+        var summonFX = summonFXObj.GetComponent<SummonFX>();
         summonFX.PlayFX();
         yield return new WaitForSeconds(spawnDelay);
-        var enemyObj = GameObject.Instantiate(enemyPrefab, pos, enemyPrefab.transform.rotation);
+
+        // var enemyObj = GameObject.Instantiate(enemyPrefab);
+        var enemyObj = ObjectPoolManager.GetObject(enemyPrefab);
+        // var enemyObj = ObjectPool.Instance.GetObject(enemyPrefab);
+        enemyObj.transform.SetPositionAndRotation(pos, enemyPrefab.transform.rotation);
         var enemy = enemyObj.GetComponent<EnemyController>();
         enemy.Appear(0.2f);
         enemyList.Add(enemy);
@@ -139,7 +168,8 @@ public class GameController : MonoBehaviour
         if (isPaused || !pauseGameFeedback)
             return;
         pauseGameFeedback.PlayFeedbacks();
-        // Time.timeScale = 1;
+
+        Time.timeScale = 0;
         isPaused = true;
     }
     public void ResumeGame()
@@ -147,7 +177,7 @@ public class GameController : MonoBehaviour
         if (!isPaused || !resumeGameFeedback)
             return;
         resumeGameFeedback.PlayFeedbacks();
-        // Time.timeScale = 0;
+        Time.timeScale = 1;
         isPaused = false;
     }
 
@@ -163,8 +193,6 @@ public class GameController : MonoBehaviour
     private void OnDisable()
     {
         PlayerStatus.PlayerDie -= GameOver;
-
-
     }
     private void OnDestroy()
     {
@@ -173,7 +201,7 @@ public class GameController : MonoBehaviour
     }
 
     [Button]
-   public void StopGenEnemies()
+    public void StopGenEnemies()
     {
         StopAllCoroutines();
     }

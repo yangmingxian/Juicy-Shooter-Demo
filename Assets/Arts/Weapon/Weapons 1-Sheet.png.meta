@@ -927,7 +927,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons 1-Sheet_38
+      name: Rifle 4 Shoot-Sheet_0
       rect:
         serializedVersion: 2
         x: 32
@@ -948,7 +948,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons 1-Sheet_39
+      name: Rifle 4 Shoot-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -1515,7 +1515,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons 1-Sheet_66
+      name: Sniper 3 Shoot-Sheet_0
       rect:
         serializedVersion: 2
         x: 32
@@ -1536,7 +1536,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons 1-Sheet_67
+      name: Sniper 3 Shoot-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -1557,7 +1557,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons 1-Sheet_68
+      name: Sniper 3 Shoot-Sheet_2
       rect:
         serializedVersion: 2
         x: 96
@@ -2031,27 +2031,28 @@ TextureImporter:
     nameFileIdTable:
       Weapons 1-Sheet_88: -662700459
       Weapons 1-Sheet_70: 373510781
+      Sniper 3 Shoot-Sheet_0: 1692437687
       Rifle 2 Shoot-Sheet_0: -1925364996
       Weapons 1-Sheet_85: 1349837368
       Shotgun 1 Shoot-Sheet_0: 1377082764
       Sniper 1 Idle-Sheet_0: -464233359
       Weapons 1-Sheet_63: 805849760
+      Rifle 4 Shoot-Sheet_1: 1162704495
       Weapons 1-Sheet_83: 1622103573
       Weapons 1-Sheet_89: -1810783656
-      Weapons 1-Sheet_39: 1162704495
       Weapons 1-Sheet_43: -676165432
       Weapons 1-Sheet_81: 1418830638
+      Sniper 3 Shoot-Sheet_2: -1090076228
       Pistol 6 Shoot-Sheet_0: 1992000990
       Pistol 2 Shoot-Sheet_0: -1398580507
       Sniper 3 Idle-Sheet_0: -1265969920
       Weapons 1-Sheet_76: 683509247
       Weapons 1-Sheet_71: 1042253769
-      Weapons 1-Sheet_68: -1090076228
-      Weapons 1-Sheet_38: -112885513
       Weapons 1-Sheet_48: -1125430643
       Sniper 2 Idle-Sheet_0: 1896781922
       Weapons 1-Sheet_41: 2128317184
       Rifle 6 Idle-Sheet_0: -1928442101
+      Rifle 4 Shoot-Sheet_0: -112885513
       Shotgun 1 Shoot-Sheet_1: -1881348088
       Pistol 5 Idle-Sheet_0: 2138883063
       Pistol 6 Shoot-Sheet_1: 1387330463
@@ -2091,11 +2092,9 @@ TextureImporter:
       Weapons 1-Sheet_64: -1125259777
       Sniper 4 Idle-Sheet_0: -270688119
       Pistol 3 Shoot-Sheet_0: 999844792
-      Weapons 1-Sheet_66: 1692437687
       Pistol 6 Idle-Sheet_0: -518752105
       Pistol 1 Shoot-Sheet_0: 1095875609
       Rifle 5 Idle-Sheet_0: -558630555
-      Weapons 1-Sheet_67: -1540602776
       Pistol 8 Shoot-Sheet_0: 66389500
       Rifle 1 Shoot-Sheet_0: -1530479951
       Pistol 1 Shoot-Sheet_1: -2146445664
@@ -2116,6 +2115,7 @@ TextureImporter:
       Weapons 1-Sheet_72: -947420444
       Weapons 1-Sheet_59: 273041054
       Pistol 4 Idle-Sheet_0: -1311701277
+      Sniper 3 Shoot-Sheet_1: -1540602776
       Pistol 8 Idle-Sheet_0: -1980573463
       Weapons 1-Sheet_54: 1606867176
       Pistol 3 Idle-Sheet_0: -2140126012

@@ -5,7 +5,6 @@ using Animancer;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using DG.Tweening;
-using Lean.Pool;
 
 
 public class EnemyController : MonoBehaviour
@@ -155,7 +154,11 @@ public class EnemyController : MonoBehaviour
         float randomValue = Random.value;
         if (randomValue < prob)
         {
-            var explodsion = LeanPool.Spawn(explodsionPrefab, transform.position, Quaternion.identity);
+            var explodsionObj = ObjectPoolManager.GetObject(explodsionPrefab.gameObject);
+            if (!explodsionObj)
+                return;
+            var explodsion = explodsionObj.GetComponent<Explosion>();
+            explodsion.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
             explodsion.ownerTrans = transform;
             explodsion.Explode();
             explodsion.GetComponent<MMF_Player>().PlayFeedbacks();

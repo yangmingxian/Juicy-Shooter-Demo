@@ -37,6 +37,6 @@ public class SummonFX : MonoBehaviour
         summonFXAnimancer.Play(animationClip);
         var state = summonFXAnimancer.Play(animationClip);
         state.Time = 0;
-        // state.Events.OnEnd = () => Destroy(animancer.gameObject);
+        state.Events.OnEnd = () => GameController.spawnVFXPool.Release(gameObject);
     }
 }

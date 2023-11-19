@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Animancer;
-using Lean.Pool;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class Explosion : MonoBehaviour
         if (TryGetComponent<AnimancerComponent>(out var animancer))
         {
             var state = animancer.Play(explodeAnimClip);
-            state.Events.OnEnd = () => LeanPool.Despawn(gameObject);
+            state.Events.OnEnd = () => ObjectPoolManager.PushObject(gameObject);
         }
 
         inExplosionRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
