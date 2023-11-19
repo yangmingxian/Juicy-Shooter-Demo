@@ -6,10 +6,17 @@ using UnityEngine;
 public class SimpleAnimationController : MonoBehaviour
 {
     [SerializeField] AnimationClip animationClip;
+    [SerializeField] float Speed;
     AnimancerComponent animancer;
+    private void Awake()
+    {
+        animancer = GetComponent<AnimancerComponent>();
+    }
     void Start()
     {
-        GetComponent<AnimancerComponent>().Play(animationClip);
+        animancer.Play(animationClip);
+        var state = animancer.Play(animationClip);
+        state.Speed = Speed;
     }
 
 }
