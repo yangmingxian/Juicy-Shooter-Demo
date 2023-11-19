@@ -16874,7 +16874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 78cdceb064dfbdb40b902ea259e7257c, type: 2}
   m_Color: {r: 0, g: 0.9490199, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -39142,7 +39142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d503c8ec47f0e243928d14a0a4029bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 56d39874a34df2242a2bbff365f75ccd, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 5634dce7ff0c30846935f7a2bced0977, type: 3}
   spriteRenderer: {fileID: 0}
 --- !u!114 &1844418555
 MonoBehaviour:
