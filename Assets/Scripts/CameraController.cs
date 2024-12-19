@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 public class CameraController : MonoBehaviour

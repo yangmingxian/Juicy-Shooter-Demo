@@ -100,8 +100,8 @@ public class EnemyController : MonoBehaviour
     {
         _animancer.Play(moveClip);
         direction = GameObject.FindWithTag("Player").transform.position - transform.position;
-        rb.velocity += speed * Time.fixedDeltaTime * direction.normalized;
-        rb.velocity *= Mathf.Pow(1 - moveDamping, Time.fixedDeltaTime * 10);
+        rb.linearVelocity += speed * Time.fixedDeltaTime * direction.normalized;
+        rb.linearVelocity *= Mathf.Pow(1 - moveDamping, Time.fixedDeltaTime * 10);
 
         enemySprite.flipX = direction.x < 0;
 

@@ -200,7 +200,7 @@ public class Pistol : Weapon
 
                 bullet.transform.right = Quaternion.AngleAxis(spread, Vector3.forward) * direction;
 
-                bullet.rb.velocity = bullet.transform.right * bullet.speed;
+                bullet.rb.linearVelocity = bullet.transform.right * bullet.speed;
 
             }
 

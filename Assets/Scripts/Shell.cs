@@ -28,14 +28,14 @@ public class Shell : MonoBehaviour
         spriteRenderer.color = Color.white;
         var angle = Random.Range(ejectOffset.x, ejectOffset.y);
         var dist = Random.Range(speed.x, speed.y);
-        rb.velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up * dist;
+        rb.linearVelocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up * dist;
         StartCoroutine(StopShell());
     }
 
     IEnumerator StopShell()
     {
         yield return new WaitForSeconds(stopTime);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0;
         yield return new WaitForSeconds(10f);
         spriteRenderer.DOColor(Color.clear, vanishTime).SetEase(Ease.Linear).OnComplete(

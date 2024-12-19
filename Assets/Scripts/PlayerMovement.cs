@@ -63,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        rb.velocity += speed * Time.fixedDeltaTime * direction.normalized;
-        rb.velocity *= Mathf.Pow(1 - moveDamping, Time.fixedDeltaTime * 10);
+        rb.linearVelocity += speed * Time.fixedDeltaTime * direction.normalized;
+        rb.linearVelocity *= Mathf.Pow(1 - moveDamping, Time.fixedDeltaTime * 10);
     }
 
     public float dashDistance;
@@ -101,12 +101,12 @@ public class PlayerMovement : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < dashDuration)
         {
-            rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothTime);
+            rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref currentVelocity, smoothTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        rb.velocity = targetVelocity;
+        rb.linearVelocity = targetVelocity;
 
         isDashing = false;
         isDashCooldown = true;
